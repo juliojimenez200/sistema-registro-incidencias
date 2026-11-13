@@ -10,14 +10,14 @@ Versionamiento semántico: `MAJOR.MINOR.PATCH`
 
 ## v1.1.1 — Corrección de errores
 
-**Fecha:** 2026-11-12
+**Fecha:** 2026-11-13
 **Tipo:** PATCH
 
 ### Corregido
 - **Bug:** al eliminar una incidencia mientras había un filtro de estado activo (por ejemplo, "Abierta"), la aplicación eliminaba el registro ubicado en esa posición dentro del listado **completo**, en lugar del registro que el usuario veía y había seleccionado en el listado **filtrado**. Esto podía borrar una incidencia distinta a la deseada, o incluso una con un estado diferente.
   - **Causa raíz:** el botón "Eliminar" usaba el índice del arreglo filtrado (`visibles`) para eliminar directamente del arreglo completo guardado en `localStorage`.
   - **Solución:** cada incidencia ahora recibe un identificador único (`id`) al crearse. La eliminación busca y elimina por `id`, de modo que el filtro aplicado ya no afecta qué registro se borra.
-  - **Issue relacionado:** ver [`ISSUE_EJEMPLO.md`](./ISSUE_EJEMPLO.md).
+  - **Issue relacionado:** #5 (ver [`ISSUE_EJEMPLO.md`](./ISSUE_EJEMPLO.md)).
   - **Pull request:** `fix/eliminar-con-filtro-activo` → `main`.
 
 ### Sin cambios
