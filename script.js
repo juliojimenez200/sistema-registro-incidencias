@@ -48,6 +48,7 @@ function renderizarIncidencias() {
       <td>${inc.descripcion}</td>
       <td><span class="badge ${claseEstado}">${estado}</span></td>
       <td>${inc.fecha}</td>
+      <td><button class="btn-eliminar" data-index="${index}">Eliminar</button></td>
     `;
     tbody.appendChild(fila);
   });
@@ -76,4 +77,13 @@ document.getElementById("incidencia-form").addEventListener("submit", (e) => {
 });
 
 document.getElementById("filtro-estado").addEventListener("change", renderizarIncidencias);
+document.getElementById("incidencias-body").addEventListener("click", (e) => {
+  if (!e.target.classList.contains("btn-eliminar")) return;
+
+  const index = Number(e.target.dataset.index);
+  const incidencias = obtenerIncidencias();
+  incidencias.splice(index, 1);
+  guardarIncidencias(incidencias);
+  renderizarIncidencias();
+});
 renderizarIncidencias();
