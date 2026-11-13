@@ -9,7 +9,7 @@
 <body>
   <header>
     <h1>Sistema de Registro de Incidencias</h1>
-    <p class="version">v1.1.1</p>
+    <p class="version">v1.0.0</p>
   </header>
 
   <main>
@@ -22,32 +22,12 @@
         <label for="descripcion">Descripción</label>
         <textarea id="descripcion" name="descripcion" rows="3" required placeholder="Describe el problema..."></textarea>
 
-        <label for="estado">Estado</label>
-        <select id="estado" name="estado">
-          <option value="Abierta">Abierta</option>
-          <option value="En progreso">En progreso</option>
-          <option value="Cerrada">Cerrada</option>
-        </select>
-
         <button type="submit">Registrar incidencia</button>
       </form>
     </section>
 
     <section class="list-section">
       <h2>Incidencias registradas</h2>
-
-      <div class="filter-bar">
-        <div>
-          <label for="filtro-estado">Filtrar por estado</label>
-          <select id="filtro-estado">
-            <option value="todas">Todas</option>
-            <option value="Abierta">Abierta</option>
-            <option value="En progreso">En progreso</option>
-            <option value="Cerrada">Cerrada</option>
-          </select>
-        </div>
-      </div>
-
       <table id="tabla-incidencias">
         <thead>
           <tr>
@@ -55,8 +35,6 @@
             <th>Título</th>
             <th>Descripción</th>
             <th>Fecha</th>
-            <th>Estado</th>
-            <th></th>
           </tr>
         </thead>
         <tbody id="incidencias-body">
