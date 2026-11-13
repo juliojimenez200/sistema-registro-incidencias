@@ -1,4 +1,4 @@
-// Sistema de Registro de Incidencias - v1.0.0
+// Sistema de Registro de Incidencias - v1.1.0
 // Funcionalidad: registrar y listar incidencias (persistencia en localStorage)
 
 const STORAGE_KEY = "incidencias";
@@ -21,19 +21,24 @@ function guardarIncidencias(incidencias) {
 }
 
 function renderizarIncidencias() {
-  const incidencias = obtenerIncidencias();
+  const todas = obtenerIncidencias();
+  const filtro = document.getElementById("filtro-estado").value;
+
+  const visibles = filtro === "todas"
+    ? todas
+    : todas.filter((inc) => inc.estado === filtro);
   const tbody = document.getElementById("incidencias-body");
   const emptyMsg = document.getElementById("empty-msg");
 
   tbody.innerHTML = "";
 
-  if (incidencias.length === 0) {
+  if (visibles.length === 0) {
     emptyMsg.style.display = "block";
     return;
   }
   emptyMsg.style.display = "none";
 
-  incidencias.forEach((inc, index) => {
+  visibles.forEach((inc, index) => {
     const estado = inc.estado || ESTADO_POR_DEFECTO;
     const claseEstado = CLASES_ESTADO[estado] || "abierta";
     const fila = document.createElement("tr");
@@ -70,4 +75,5 @@ document.getElementById("incidencia-form").addEventListener("submit", (e) => {
   renderizarIncidencias();
 });
 
+document.getElementById("filtro-estado").addEventListener("change", renderizarIncidencias);
 renderizarIncidencias();
