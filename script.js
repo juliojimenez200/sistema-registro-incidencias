@@ -2,6 +2,14 @@
 // Funcionalidad: registrar y listar incidencias (persistencia en localStorage)
 
 const STORAGE_KEY = "incidencias";
+const ESTADO_POR_DEFECTO = "Abierta";
+
+// Relaciona cada estado con su clase CSS en style.css
+const CLASES_ESTADO = {
+  "Abierta": "abierta",
+  "En progreso": "en-progreso",
+  "Cerrada": "cerrada",
+};
 
 function obtenerIncidencias() {
   const data = localStorage.getItem(STORAGE_KEY);
@@ -26,11 +34,14 @@ function renderizarIncidencias() {
   emptyMsg.style.display = "none";
 
   incidencias.forEach((inc, index) => {
+    const estado = inc.estado || ESTADO_POR_DEFECTO;
+    const claseEstado = CLASES_ESTADO[estado] || "abierta";
     const fila = document.createElement("tr");
     fila.innerHTML = `
       <td>${index + 1}</td>
       <td>${inc.titulo}</td>
       <td>${inc.descripcion}</td>
+      <td><span class="badge ${claseEstado}">${estado}</span></td>
       <td>${inc.fecha}</td>
     `;
     tbody.appendChild(fila);
@@ -42,13 +53,15 @@ document.getElementById("incidencia-form").addEventListener("submit", (e) => {
 
   const titulo = document.getElementById("titulo").value.trim();
   const descripcion = document.getElementById("descripcion").value.trim();
+  const estado = document.getElementById("estado").value;
 
-  if (!titulo || !descripcion) return;
+  if (!titulo || !descripcion || !estado) return;
 
   const incidencias = obtenerIncidencias();
   incidencias.push({
     titulo,
     descripcion,
+    estado,
     fecha: new Date().toLocaleDateString(),
   });
   guardarIncidencias(incidencias);
