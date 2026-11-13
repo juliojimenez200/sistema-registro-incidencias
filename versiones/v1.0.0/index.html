@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Registro de Incidencias</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Sistema de Registro de Incidencias</h1>
+    <p class="version">v1.0.0</p>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Nueva incidencia</h2>
+      <form id="incidencia-form">
+        <label for="titulo">Título</label>
+        <input type="text" id="titulo" name="titulo" required placeholder="Ej: Error al iniciar sesión">
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" name="descripcion" rows="3" required placeholder="Describe el problema..."></textarea>
+
+        <button type="submit">Registrar incidencia</button>
+      </form>
+    </section>
+
+    <section class="list-section">
+      <h2>Incidencias registradas</h2>
+      <table id="tabla-incidencias">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Título</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody id="incidencias-body">
+          <!-- Filas generadas dinámicamente -->
+        </tbody>
+      </table>
+      <p id="empty-msg" class="empty-msg">Aún no hay incidencias registradas.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Gestión de la Configuración del Software · Unidad 3</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
