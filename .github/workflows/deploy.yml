@@ -1,3 +1,4 @@
+# Workflow de CI/CD: valida los archivos y despliega a GitHub Pages
 name: Validar y desplegar en GitHub Pages
 
 # Se ejecuta en cada push a main y también se puede disparar manualmente
