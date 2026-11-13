@@ -4,6 +4,13 @@
 const STORAGE_KEY = "incidencias";
 const ESTADO_POR_DEFECTO = "Abierta";
 
+// Relaciona cada estado con su clase CSS en style.css
+const CLASES_ESTADO = {
+  "Abierta": "abierta",
+  "En progreso": "en-progreso",
+  "Cerrada": "cerrada",
+};
+
 function obtenerIncidencias() {
   const data = localStorage.getItem(STORAGE_KEY);
   return data ? JSON.parse(data) : [];
@@ -28,12 +35,13 @@ function renderizarIncidencias() {
 
   incidencias.forEach((inc, index) => {
     const estado = inc.estado || ESTADO_POR_DEFECTO;
+    const claseEstado = CLASES_ESTADO[estado] || "abierta";
     const fila = document.createElement("tr");
     fila.innerHTML = `
       <td>${index + 1}</td>
       <td>${inc.titulo}</td>
       <td>${inc.descripcion}</td>
-      <td>${estado}</td>
+      <td><span class="badge ${claseEstado}">${estado}</span></td>
       <td>${inc.fecha}</td>
     `;
     tbody.appendChild(fila);
